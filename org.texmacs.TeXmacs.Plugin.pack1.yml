@@ -1,7 +1,7 @@
 id: org.texmacs.TeXmacs.Plugin.pack1
 runtime: org.texmacs.TeXmacs
 runtime-version: stable
-sdk: org.kde.Sdk//5.15-24.08
+sdk: org.kde.Sdk//6.8
 build-extension: true
 separate-locales: false
 build-options:
