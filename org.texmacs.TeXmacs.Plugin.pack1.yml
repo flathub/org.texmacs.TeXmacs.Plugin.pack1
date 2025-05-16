@@ -252,11 +252,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Macaulay2/M2.git
-        tag: release-1.24.11
-      - type: patch
-        paths:
-          - patches/texmacs/mathml.m2.patch
-          - patches/texmacs/texmacs.m2.patch
+        tag: release-1.25.05
+        
       - type: file
         path: org.texmacs.TeXmacs.Plugin.pack1.metainfo.xml
         
