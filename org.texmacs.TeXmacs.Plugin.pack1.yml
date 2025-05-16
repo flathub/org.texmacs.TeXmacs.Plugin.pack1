@@ -215,8 +215,8 @@ modules:
       - make install prefix=/app/plugins/pack1
     sources:
       - type: archive
-        url: http://cgm.cs.mcgill.ca/~avis/C/lrslib/archive/lrslib-073.tar.gz
-        sha256: c49a4ebd856183473d1d5a62785fcdfe1057d5d671d4b96f3a1250eb1afe4e83
+        url: http://deb.debian.org/debian/pool/main/l/lrslib/lrslib_0.71b.orig.tar.gz
+        sha256: df22682cd742315fe04f866cfe4804d5950f7dc7f514d5b5f36f5b7f5aff9188
 
   - name: mpsolve
     buildsystem: autotools
