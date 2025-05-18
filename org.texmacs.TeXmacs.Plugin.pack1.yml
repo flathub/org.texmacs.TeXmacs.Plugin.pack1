@@ -215,8 +215,8 @@ modules:
       - make install prefix=/app/plugins/pack1
     sources:
       - type: archive
-        url: http://cgm.cs.mcgill.ca/~avis/C/lrslib/archive/lrslib-073.tar.gz
-        sha256: c49a4ebd856183473d1d5a62785fcdfe1057d5d671d4b96f3a1250eb1afe4e83
+        url: http://deb.debian.org/debian/pool/main/l/lrslib/lrslib_0.71b.orig.tar.gz
+        sha256: df22682cd742315fe04f866cfe4804d5950f7dc7f514d5b5f36f5b7f5aff9188
 
   - name: mpsolve
     buildsystem: autotools
@@ -231,8 +231,8 @@ modules:
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.1.tar.bz2
-        sha256: b9df93635b20e4089c29623b19420c4ac848a1b29df1cfd59f26cab0d2666aa0
+        url: https://www.mpfr.org/mpfr-current/mpfr-4.2.2.tar.xz
+        sha256: b67ba0383ef7e8a8563734e2e889ef5ec3c3b898a01d00fa0a6869ad81c6ce01
 
   - name: macaulay2
     buildsystem: autotools
@@ -252,11 +252,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Macaulay2/M2.git
-        tag: release-1.24.11
-      - type: patch
-        paths:
-          - patches/texmacs/mathml.m2.patch
-          - patches/texmacs/texmacs.m2.patch
+        tag: release-1.25.05
+        
       - type: file
         path: org.texmacs.TeXmacs.Plugin.pack1.metainfo.xml
         
@@ -272,13 +269,13 @@ modules:
         dest: 'M2/BUILD/tarfiles'
         
       - type: file
-        url: https://www.singular.uni-kl.de/ftp/pub/Math/Factory/factory-4.4.0.tar.gz
-        sha256: baf31159578463e26bf18ec68ec901228d79a819866dd96c02d85c73dfbaf030
+        url: https://www.singular.uni-kl.de/ftp/pub/Math/Factory/factory-4.4.1.tar.gz
+        sha256: ba6a8a215448ebc0a0872a284cc9563c05a66d01944ef5fcfabfa5df672a68c0
         dest: 'M2/BUILD/tarfiles'
         
       - type: file
-        url: http://macaulay2.com/Downloads/OtherSourceCode/glpk-4.59.tar.gz
-        sha256: e398be2e7cb8a98584325268704729872558a4a88555bc8a54139d017eb9ebae
+        url: https://ftp.gnu.org/gnu/glpk/glpk-5.0.tar.gz
+        sha256: 4a1013eebb50f728fc601bdd833b0b2870333c3b3e5a816eeba921d95bec6f15
         dest: 'M2/BUILD/tarfiles'
         
       - type: file
@@ -297,9 +294,9 @@ modules:
         dest: 'M2/BUILD/tarfiles'
         
       - type: file
-        url: https://github.com/algebraic-solving/msolve/archive/refs/tags/v0.7.3.tar.gz
-        dest-filename: v0.7.3.tar.gz
-        sha256: b82bf7dfe1fb7d3064ecf95e0d0a01334820b09b1107368ca9b4d05ba9ee1241
+        url: https://github.com/algebraic-solving/msolve/archive/refs/tags/v0.7.5.tar.gz
+        dest-filename: v0.7.5.tar.gz
+        sha256: e88368abfd1e1918329ff9444164ca0e304835794fec68d192a63c845ae63128
         dest: 'M2/BUILD/tarfiles'
         
   - name: giac
