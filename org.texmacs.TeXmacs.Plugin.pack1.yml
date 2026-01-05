@@ -222,6 +222,8 @@ modules:
         
   - name: lrslib
     buildsystem: simple
+    build-options:
+      cflags: -Wno-error=incompatible-pointer-types
     build-commands:
       - make
       - make install prefix=/app/plugins/pack1
