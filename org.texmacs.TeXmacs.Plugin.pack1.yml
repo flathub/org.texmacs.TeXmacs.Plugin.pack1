@@ -234,12 +234,14 @@ modules:
 
   - name: mpsolve
     buildsystem: autotools
+    build-options:
+      cflags: -Wno-error=implicit-function-declaration
     config-opts:
       - --disable-examples
     sources:
       - type: archive
-        url: https://numpi.dm.unipi.it/_media/software/mpsolve/mpsolve-3.2.1.tar.bz2
-        sha256: 45b22f6b04544b9eda2457eec58580d892c7e00824ebd2d6e31fe24cdd763804
+        url: https://numpi.dm.unipi.it/wp-content/uploads/2025/08/mpsolve-3.2.3.tar.bz2
+        sha256: 1f2e239c698c783b63a5e6903e76316c0335a01d71c466a8551e8a3f790b3971
 
   - name: MPFR
     buildsystem: autotools
