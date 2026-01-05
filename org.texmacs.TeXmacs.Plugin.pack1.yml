@@ -259,7 +259,7 @@ modules:
       - --disable-documentation
     subdir: M2
     build-options:
-      cppflags: "-I/usr/include/python3.12/"
+      cppflags: "-I/usr/include/python3.13/"
       env:
         C_INCLUDE_PATH: "/app/plugins/pack1/include:/app/plugins/pack1/include/cddlib"
         CPLUS_INCLUDE_PATH: "/app/plugins/pack1/include:/app/plugins/pack1/include/cddlib"
