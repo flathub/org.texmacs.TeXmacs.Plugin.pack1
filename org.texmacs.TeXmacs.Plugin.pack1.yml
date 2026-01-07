@@ -1,7 +1,7 @@
 id: org.texmacs.TeXmacs.Plugin.pack1
 runtime: org.texmacs.TeXmacs
 runtime-version: stable
-sdk: org.kde.Sdk//6.10
+sdk: org.freedesktop.Sdk//25.08
 build-extension: true
 separate-locales: false
 build-options:
@@ -135,10 +135,12 @@ modules:
         
   - name: flint
     buildsystem: autotools
+    build-options:
+      cppflags: "-std=c11"
     sources:
       - type: archive
-        url: https://flintlib.org/download/flint-3.4.0.tar.gz
-        sha256: 9497679804dead926e3affeb8d4c58739d1c7684d60c2c12827550d28e454a33
+        url: https://flintlib.org/download/flint-3.1.2.tar.gz
+        sha256: fdb3a431a37464834acff3bdc145f4fe8d0f951dd5327c4c6f93f4cbac5c2700
         
   - name: frobby
     buildsystem: simple
@@ -315,11 +317,10 @@ modules:
         sha256: e88368abfd1e1918329ff9444164ca0e304835794fec68d192a63c845ae63128
         dest: 'M2/BUILD/tarfiles'
         
+
   - name: giac
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/giac_1.9.0-998.tar.gz
-        sha256: 7f490a56af52c18cfdb53a2370f31fe05d9e96c8456090c541c3f51e049de1e4
-      - type: patch #ArcLinux
-        path: patches/giac/format-security.patch
+        url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac-2.0.0.tar.bz2
+        sha256: 2deb2f46824cbaf8decc013262e48e2f0b1520cc60e1f630751b5c5e3f853e50
