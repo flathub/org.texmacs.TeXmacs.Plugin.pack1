@@ -1,7 +1,7 @@
 id: org.texmacs.TeXmacs.Plugin.pack1
 runtime: org.texmacs.TeXmacs
 runtime-version: stable
-sdk: org.kde.Sdk//6.8
+sdk: org.freedesktop.Sdk//25.08
 build-extension: true
 separate-locales: false
 build-options:
@@ -135,6 +135,8 @@ modules:
         
   - name: flint
     buildsystem: autotools
+    build-options:
+      cppflags: "-std=c11"
     sources:
       - type: archive
         url: https://flintlib.org/download/flint-3.1.2.tar.gz
@@ -220,8 +222,10 @@ modules:
           - rm aclocal.m4
           - autoreconf -vfi
         
-  - name: lrs
+  - name: lrslib
     buildsystem: simple
+    build-options:
+      cflags: -std=c17 -D_GNU_SOURCE
     build-commands:
       - make
       - make install prefix=/app/plugins/pack1
@@ -232,12 +236,14 @@ modules:
 
   - name: mpsolve
     buildsystem: autotools
+    build-options:
+      cflags: -Wno-error=implicit-function-declaration
     config-opts:
       - --disable-examples
     sources:
       - type: archive
-        url: https://numpi.dm.unipi.it/_media/software/mpsolve/mpsolve-3.2.1.tar.bz2
-        sha256: 45b22f6b04544b9eda2457eec58580d892c7e00824ebd2d6e31fe24cdd763804
+        url: https://numpi.dm.unipi.it/wp-content/uploads/2025/08/mpsolve-3.2.3.tar.bz2
+        sha256: 1f2e239c698c783b63a5e6903e76316c0335a01d71c466a8551e8a3f790b3971
 
   - name: MPFR
     buildsystem: autotools
@@ -255,7 +261,7 @@ modules:
       - --disable-documentation
     subdir: M2
     build-options:
-      cppflags: "-I/usr/include/python3.12/"
+      cppflags: "-I/usr/include/python3.13/"
       env:
         C_INCLUDE_PATH: "/app/plugins/pack1/include:/app/plugins/pack1/include/cddlib"
         CPLUS_INCLUDE_PATH: "/app/plugins/pack1/include:/app/plugins/pack1/include/cddlib"
@@ -311,11 +317,10 @@ modules:
         sha256: e88368abfd1e1918329ff9444164ca0e304835794fec68d192a63c845ae63128
         dest: 'M2/BUILD/tarfiles'
         
+
   - name: giac
     buildsystem: autotools
     sources:
       - type: archive
-        url: https://www-fourier.ujf-grenoble.fr/~parisse/debian/dists/stable/main/source/giac_1.9.0-998.tar.gz
-        sha256: 7f490a56af52c18cfdb53a2370f31fe05d9e96c8456090c541c3f51e049de1e4
-      - type: patch #ArcLinux
-        path: patches/giac/format-security.patch
+        url: https://www-fourier.univ-grenoble-alpes.fr/~parisse/giac/giac-2.0.0.tar.bz2
+        sha256: 2deb2f46824cbaf8decc013262e48e2f0b1520cc60e1f630751b5c5e3f853e50

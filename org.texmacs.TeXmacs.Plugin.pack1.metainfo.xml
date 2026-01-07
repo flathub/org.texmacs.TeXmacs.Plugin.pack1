@@ -3,7 +3,7 @@
   <id>org.texmacs.TeXmacs.Plugin.pack1</id>
   <extends>org.texmacs.TeXmacs</extends>
   <name>Macaulay2 and Giac</name>
-  <summary>Adds support for Macaulay2 and Giac. Plugin name: org.texmacs.TeXmacs.Plugin.pack1</summary>
+  <summary>Adds support for Macaulay2 and Giac.</summary>
   <project_license>GPL-2.0-or-later</project_license>
   <metadata_license>CC0-1.0</metadata_license>
   <update_contact>sixpalax_AT_gmail.com</update_contact>
