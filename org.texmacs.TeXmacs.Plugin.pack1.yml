@@ -270,7 +270,7 @@ modules:
     sources:
       - type: git
         url: https://github.com/Macaulay2/M2.git
-        tag: release-1.25.05
+        tag: release-1.25.11
         
       - type: file
         path: org.texmacs.TeXmacs.Plugin.pack1.metainfo.xml
