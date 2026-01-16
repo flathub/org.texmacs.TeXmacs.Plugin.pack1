@@ -5,22 +5,22 @@ sdk: org.freedesktop.Sdk//25.08
 build-extension: true
 separate-locales: false
 build-options:
-  prefix: "/app/plugins/pack1"
-  prepend-path: "/app/plugins/pack1/bin"
-  append-ld-library-path: "/app/plugins/pack1/lib:/app/plugins/pack1/lib64"
-  append-pkg-config-path: "/app/plugins/pack1/lib/pkgconfig:/app/plugins/pack1/lib64/pkgconfig"
-  ldflags: "-L/app/plugins/pack1/lib64 -L/app/plugins/pack1/lib"
+  prefix: /app/plugins/pack1
+  prepend-path: /app/plugins/pack1/bin
+  append-ld-library-path: /app/plugins/pack1/lib:/app/plugins/pack1/lib64
+  append-pkg-config-path: /app/plugins/pack1/lib/pkgconfig:/app/plugins/pack1/lib64/pkgconfig
+  ldflags: -L/app/plugins/pack1/lib64 -L/app/plugins/pack1/lib
   env:
-    C_INCLUDE_PATH: "/app/plugins/pack1/include"
-    CPLUS_INCLUDE_PATH: "/app/plugins/pack1/include"
+    C_INCLUDE_PATH: /app/plugins/pack1/include
+    CPLUS_INCLUDE_PATH: /app/plugins/pack1/include
 cleanup:
-  - "/include"
-  - "/lib/pkgconfig"
-  - "/lib/cmake"
-  - "/lib64/pkgconfig"
-  - "/lib64/cmake"
-  - "*.la"
-  - "*.a"
+  - /include
+  - /lib/pkgconfig
+  - /lib/cmake
+  - /lib64/pkgconfig
+  - /lib64/cmake
+  - '*.la'
+  - '*.a'
 modules:
   - name: tbb
     buildsystem: cmake-ninja
@@ -31,17 +31,18 @@ modules:
       - type: archive
         url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2022.0.0.tar.gz
         sha256: e8e89c9c345415b17b30a2db3095ba9d47647611662073f7fbf54ad48b7f3c2a
-        
+
   - name: boost
     buildsystem: simple
     build-commands:
       - ./bootstrap.sh --prefix=/app/plugins/pack1 --with-libraries=filesystem,system,regex,stacktrace,headers
-      - ./b2 install -j$FLATPAK_BUILDER_N_JOBS variant=release link=shared runtime-link=shared cxxstd=17
+      - ./b2 install -j$FLATPAK_BUILDER_N_JOBS variant=release link=shared runtime-link=shared
+        cxxstd=17
     sources:
       - type: archive
         url: https://downloads.sourceforge.net/boost/boost/1.85.0/boost_1_85_0.tar.bz2
         sha256: 7009fe1faa1697476bdc7027703a2badb84e849b7b0baad5086b087b971f8617
-        
+
   - name: openblas #macaulay2 #fflas-ffpack
     buildsystem: cmake-ninja
     builddir: true
@@ -59,8 +60,8 @@ modules:
       - /share/man
     sources:
       - type: archive
-        url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.29/OpenBLAS-0.3.29.tar.gz
-        sha512: 046316b4297460bffca09c890ecad17ea39d8b3db92ff445d03b547dd551663d37e40f38bce8ae11e2994374ff01e622b408da27aa8e40f4140185ee8f001a60
+        url: https://github.com/OpenMathLib/OpenBLAS/archive/v0.3.31.tar.gz
+        sha512: 703b84c476c148a0922a04b1c33c9c4c452f478d608d93e59204b8f0f2c516344301ff0a4dbb3750a2449db0d28cc2df001c295898e859b41ecb8381f9c2eab8
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -75,7 +76,7 @@ modules:
         url: https://github.com/linbox-team/givaro.git
         tag: v4.2.1rc0
         commit: c4090f55844f056ebb5d430a78232d60de5da1f6
-        
+
   - name: fflas-ffpack
     buildsystem: autotools
     config-opts:
@@ -85,14 +86,14 @@ modules:
         url: https://github.com/linbox-team/fflas-ffpack.git
         tag: v2.5.0
         commit: 497d81cbc6a8539857e8b4c7d9bca5d1828b6739
-        
+
   - name: cddlib #macaulay2 #gfan #topcom
     buildsystem: autotools
     sources:
       - type: archive
         url: https://github.com/cddlib/cddlib/releases/download/0.94m/cddlib-0.94m.tar.gz
         sha256: 70dffdb3369b8704dc75428a1b3c42ab9047b81ce039f12f427e2eb2b1b0dee2
-        
+
   - name: gfan
     buildsystem: simple
     build-commands:
@@ -108,7 +109,7 @@ modules:
           - patches/gfan/fix-build.patch
           - patches/gfan/gcc-14.patch
           - patches/gfan/gfan-cflags.patch
-          
+
   - name: cohomcalg
     buildsystem: simple
     build-commands:
@@ -119,7 +120,7 @@ modules:
         url: https://github.com/BenjaminJurke/cohomCalg.git
         tag: v0.32
         commit: c663c8e37cceab3cc0b2bcc57d35cb895930ab1f
-        
+
   - name: nauty
     buildsystem: autotools
     sources:
@@ -132,16 +133,16 @@ modules:
           - aclocal
           - autoconf
           - autoreconf -i
-        
+
   - name: flint
     buildsystem: autotools
     build-options:
-      cppflags: "-std=c11"
+      cppflags: -std=c11
     sources:
       - type: archive
         url: https://flintlib.org/download/flint-3.1.2.tar.gz
         sha256: fdb3a431a37464834acff3bdc145f4fe8d0f951dd5327c4c6f93f4cbac5c2700
-        
+
   - name: frobby
     buildsystem: simple
     build-commands:
@@ -159,7 +160,7 @@ modules:
         paths:
           - patches/frobby/frobby-version.patch #debian patches
           - patches/frobby/frobgrob.patch
-        
+
   - name: Normaliz
     buildsystem: autotools
     sources:
@@ -167,7 +168,7 @@ modules:
         url: https://github.com/Normaliz/Normaliz.git
         tag: v3.10.4
         commit: 1cdd4a7c6c4ecc074a3527162befc2fe892e6254
-        
+
   - name: lapack
     buildsystem: cmake-ninja
     builddir: true
@@ -180,7 +181,7 @@ modules:
       - type: archive
         url: https://github.com/Reference-LAPACK/lapack/archive/refs/tags/v3.12.0.tar.gz
         sha256: eac9570f8e0ad6f30ce4b963f4f033f0f643e7c3912fc9ee6cd99120675ad48b
-        
+
   - name: csdp
     buildsystem: simple
     build-commands:
@@ -192,7 +193,7 @@ modules:
         sha256: 3d341974af1f8ed70e1a37cc896e7ae4a513375875e5b46db8e8f38b7680b32f
       - type: patch
         path: patches/csdp/Makefile.patch
-        
+
   - name: qsopt-ex #topcom
     buildsystem: autotools
     sources:
@@ -221,7 +222,7 @@ modules:
         commands:
           - rm aclocal.m4
           - autoreconf -vfi
-        
+
   - name: lrslib
     buildsystem: simple
     build-options:
@@ -261,62 +262,55 @@ modules:
       - --disable-documentation
     subdir: M2
     build-options:
-      cppflags: "-I/usr/include/python3.13/"
+      cppflags: -I/usr/include/python3.13/
       env:
-        C_INCLUDE_PATH: "/app/plugins/pack1/include:/app/plugins/pack1/include/cddlib"
-        CPLUS_INCLUDE_PATH: "/app/plugins/pack1/include:/app/plugins/pack1/include/cddlib"
+        C_INCLUDE_PATH: /app/plugins/pack1/include:/app/plugins/pack1/include/cddlib
+        CPLUS_INCLUDE_PATH: /app/plugins/pack1/include:/app/plugins/pack1/include/cddlib
     post-install:
       - install -Dm644 --target-directory=${FLATPAK_DEST}/share/metainfo ../${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
         url: https://github.com/Macaulay2/M2.git
         tag: release-1.25.05
-        
+
       - type: file
         path: org.texmacs.TeXmacs.Plugin.pack1.metainfo.xml
-        
+
       - type: file
         url: http://macaulay2.com/Downloads/OtherSourceCode/mpfi-1.5.4.tar.gz
         sha256: 32e6ad529c97aa5ce03e28d01c921d1bce1a464fb4c57fbc248d7be21e652782
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
       - type: file
         url: http://archive.ubuntu.com/ubuntu/pool/universe/n/ntl/ntl_11.5.1.orig.tar.gz
         dest-filename: ntl-11.5.1.tar.gz
         sha256: 210d06c31306cbc6eaf6814453c56c776d9d8e8df36d74eb306f6a523d1c6a8a
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
       - type: file
         url: https://www.singular.uni-kl.de/ftp/pub/Math/Factory/factory-4.4.1.tar.gz
         sha256: ba6a8a215448ebc0a0872a284cc9563c05a66d01944ef5fcfabfa5df672a68c0
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
       - type: file
         url: https://ftp.gnu.org/gnu/glpk/glpk-5.0.tar.gz
         sha256: 4a1013eebb50f728fc601bdd833b0b2870333c3b3e5a816eeba921d95bec6f15
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
       - type: file
         url: https://github.com/4ti2/4ti2/releases/download/Release_1_6_10/4ti2-1.6.10.tar.gz
         sha256: f7c191beb14246b643e4fd5b18b53d9966693b9e6d3a569441a0e3ca14b1a86b
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
       - type: file
         url: https://gitlab.com/libeigen/eigen/-/archive/3.4.0/eigen-3.4.0.tar.gz
         sha256: 8586084f71f9bde545ee7fa6d00288b264a2b7ac3607b974e54d13e7162c1c72
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
       - type: file
         url: http://macaulay2.com/Downloads/OtherSourceCode/factory.4.0.1-gftables.tar.gz
         sha256: 9cd158ceb1c2b1c47bdca2c0b004bba92cb0e0aaa0ea6a43ca784ebdce10eebd
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
       - type: file
         url: https://github.com/algebraic-solving/msolve/archive/refs/tags/v0.7.5.tar.gz
         dest-filename: v0.7.5.tar.gz
         sha256: e88368abfd1e1918329ff9444164ca0e304835794fec68d192a63c845ae63128
-        dest: 'M2/BUILD/tarfiles'
-        
+        dest: M2/BUILD/tarfiles
+
 
   - name: giac
     buildsystem: autotools
